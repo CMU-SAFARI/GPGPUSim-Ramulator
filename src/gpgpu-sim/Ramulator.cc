@@ -35,10 +35,8 @@ bool Ramulator::FromGpusimDram_push(unsigned partition_id, mem_fetch* mf, int re
 		if( mf->get_type() == READ_REQUEST ){
 			reads[mf->get_addr()].push_back(mf);
 			from_gpgpusim[partition_id].push_back(mf);
-			//avail[partition_id]=true;
 		} else if ( mf->get_type() == WRITE_REQUEST) {
 			from_gpgpusim[partition_id].push_back(mf);
-			//avail[partition_id]=true;
 		} else {
 			//the access is not read nor write!
 			assert(0);
@@ -46,7 +44,6 @@ bool Ramulator::FromGpusimDram_push(unsigned partition_id, mem_fetch* mf, int re
 	}else{
 		//Keep it simple and send a response back
 		from_gpgpusim[partition_id].push_back(mf);
-		//avail[partition_id]=true;
 
 	}
 	return accepted;
@@ -59,19 +56,16 @@ void Ramulator::advance_time(unsigned m_id)
 	if (req_stall){
 		req_stall = false;
 	}
-	//cout<< ready[m_id] <<" --- "<<has_ready(m_id)<<endl;
 	//if the return queue is not full, complete some accesses
 	if(returned[m_id]<return_size &&  !from_ramulator_empty(m_id)){
 		auto& pkt_q = from_ramulator.find(m_id)->second;
 		mem_fetch* mf = pkt_q.front();
 		if(mf){
 			to_gpgpusim[m_id].push_back(mf);
-			//have[m_id]=true;
 			returned[m_id]++;
 			pending[m_id]--;
 			pkt_q.pop_front();
 			if (!pkt_q.size()){
-				//ready[m_id]=false;
 				from_ramulator.erase(m_id);
 			}
 		}
@@ -98,12 +92,10 @@ void Ramulator::advance_time(unsigned m_id)
 					else pending[mf->m_mid]++;
 					pkt_q.pop_front();
 					if (!pkt_q.size()){
-						//avail[m_id]=false;
 						from_gpgpusim.erase(m_id);
 					}
 					if(mf->get_type() == WRITE_REQUEST || mf->get_sid()>m_num_cores){
 						from_ramulator[mf->m_mid].push_back(mf);
-						//ready[mf->m_mid]=true;
 					}
 
 				}else{
@@ -122,7 +114,6 @@ void Ramulator::readComplete(ramulator::Request& req){
 	if (!pkt_q.size())
 		reads.erase(req.addr);
 	from_ramulator[mf->m_mid].push_back(mf);
-	//ready[mf->m_mid]=true; 
 }
 
 
@@ -135,7 +126,6 @@ void Ramulator::writeComplete(ramulator::Request& req){
 	if (!pkt_q.size())
 		writes.erase(req.addr);
 	from_ramulator[mf->m_mid].push_back(mf);
-	//ready[mf->m_mid]=true;
 
 }
 

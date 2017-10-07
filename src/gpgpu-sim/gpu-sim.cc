@@ -662,8 +662,12 @@ void gpgpu_sim::reinit_clock_domains(void)
 
 bool gpgpu_sim::active()
 {
-    if (m_config.gpu_max_cycle_opt && (gpu_tot_sim_cycle + gpu_sim_cycle) >= m_config.gpu_max_cycle_opt) 
+    if (m_config.gpu_max_cycle_opt && (gpu_tot_sim_cycle + gpu_sim_cycle) >= m_config.gpu_max_cycle_opt){ 
+	m_ramulator_wrapper.finish();
+	update_stats();
+	print_stats();
        return false;
+    }
     if (m_config.gpu_max_insn_opt && (gpu_tot_sim_insn + gpu_sim_insn) >= m_config.gpu_max_insn_opt) {
        //return false;
 	m_ramulator_wrapper.finish();
@@ -671,10 +675,18 @@ bool gpgpu_sim::active()
 	print_stats();
 	return false;
     }
-    if (m_config.gpu_max_cta_opt && (gpu_tot_issued_cta >= m_config.gpu_max_cta_opt) )
+    if (m_config.gpu_max_cta_opt && (gpu_tot_issued_cta >= m_config.gpu_max_cta_opt) ){
+	m_ramulator_wrapper.finish();
+	update_stats();
+	print_stats();
        return false;
-    if (m_config.gpu_deadlock_detect && gpu_deadlock) 
+    }
+    if (m_config.gpu_deadlock_detect && gpu_deadlock) {
+	m_ramulator_wrapper.finish();
+	update_stats();
+	print_stats();
        return false;
+    }
     for (unsigned i=0;i<m_shader_config->n_simt_clusters;i++) 
        if( m_cluster[i]->get_not_completed()>0 ) 
            return true;;
@@ -685,6 +697,9 @@ bool gpgpu_sim::active()
         return true;
     if( get_more_cta_left() )
         return true;
+    m_ramulator_wrapper.finish();
+    update_stats();
+    print_stats();
     return false;
 }
 
