@@ -1,0 +1,444 @@
+Terminals unused in grammar
+
+   STRING
+   DECIMAL
+
+
+Grammar
+
+    0 $accept: program $end
+
+    1 $@1: %empty
+
+    2 program: $@1 emptylines section
+    3        | program section
+
+    4 emptylines: emptylines NEWLINE
+    5           | %empty
+
+    6 $@2: %empty
+
+    7 section: PTXHEADER $@2 headerinfo ptxcode
+
+    8 $@3: %empty
+
+    9 $@4: %empty
+
+   10 section: ELFHEADER $@3 headerinfo elfcode $@4 sasscode
+
+   11 headerinfo: H_SEPARATOR NEWLINE H_ARCH IDENTIFIER NEWLINE H_CODEVERSION CODEVERSION NEWLINE H_PRODUCER IDENTIFIER NEWLINE H_HOST IDENTIFIER NEWLINE H_COMPILESIZE IDENTIFIER NEWLINE H_IDENTIFIER FILENAME emptylines
+
+   12 ptxcode: ptxcode PTXLINE
+   13        | %empty
+
+   14 elfcode: elfcode ELFLINE
+   15        | %empty
+
+   16 sasscode: sasscode SASSLINE
+   17         | %empty
+
+
+Terminals, with rules where they appear
+
+$end (0) 0
+error (256)
+H_SEPARATOR (258) 11
+H_ARCH (259) 11
+H_CODEVERSION (260) 11
+H_PRODUCER (261) 11
+H_HOST (262) 11
+H_COMPILESIZE (263) 11
+H_IDENTIFIER (264) 11
+CODEVERSION (265) 11
+STRING (266)
+FILENAME (267) 11
+DECIMAL (268)
+PTXHEADER (269) 7
+ELFHEADER (270) 10
+PTXLINE (271) 12
+ELFLINE (272) 14
+SASSLINE (273) 16
+IDENTIFIER (274) 11
+NEWLINE (275) 4 11
+
+
+Nonterminals, with rules where they appear
+
+$accept (21)
+    on left: 0
+program (22)
+    on left: 2 3, on right: 0 3
+$@1 (23)
+    on left: 1, on right: 2
+emptylines (24)
+    on left: 4 5, on right: 2 4 11
+section (25)
+    on left: 7 10, on right: 2 3
+$@2 (26)
+    on left: 6, on right: 7
+$@3 (27)
+    on left: 8, on right: 10
+$@4 (28)
+    on left: 9, on right: 10
+headerinfo (29)
+    on left: 11, on right: 7 10
+ptxcode (30)
+    on left: 12 13, on right: 7 12
+elfcode (31)
+    on left: 14 15, on right: 10 14
+sasscode (32)
+    on left: 16 17, on right: 10 16
+
+
+State 0
+
+    0 $accept: . program $end
+    1 $@1: . %empty
+    2 program: . $@1 emptylines section
+    3        | . program section
+
+    $default  reduce using rule 1 ($@1)
+
+    program  go to state 1
+    $@1      go to state 2
+
+
+State 1
+
+    0 $accept: program . $end
+    3 program: program . section
+    7 section: . PTXHEADER $@2 headerinfo ptxcode
+   10        | . ELFHEADER $@3 headerinfo elfcode $@4 sasscode
+
+    $end       shift, and go to state 3
+    PTXHEADER  shift, and go to state 4
+    ELFHEADER  shift, and go to state 5
+
+    section  go to state 6
+
+
+State 2
+
+    2 program: $@1 . emptylines section
+    4 emptylines: . emptylines NEWLINE
+    5           | . %empty
+
+    $default  reduce using rule 5 (emptylines)
+
+    emptylines  go to state 7
+
+
+State 3
+
+    0 $accept: program $end .
+
+    $default  accept
+
+
+State 4
+
+    6 $@2: . %empty
+    7 section: PTXHEADER . $@2 headerinfo ptxcode
+
+    $default  reduce using rule 6 ($@2)
+
+    $@2  go to state 8
+
+
+State 5
+
+    8 $@3: . %empty
+   10 section: ELFHEADER . $@3 headerinfo elfcode $@4 sasscode
+
+    $default  reduce using rule 8 ($@3)
+
+    $@3  go to state 9
+
+
+State 6
+
+    3 program: program section .
+
+    $default  reduce using rule 3 (program)
+
+
+State 7
+
+    2 program: $@1 emptylines . section
+    4 emptylines: emptylines . NEWLINE
+    7 section: . PTXHEADER $@2 headerinfo ptxcode
+   10        | . ELFHEADER $@3 headerinfo elfcode $@4 sasscode
+
+    PTXHEADER  shift, and go to state 4
+    ELFHEADER  shift, and go to state 5
+    NEWLINE    shift, and go to state 10
+
+    section  go to state 11
+
+
+State 8
+
+    7 section: PTXHEADER $@2 . headerinfo ptxcode
+   11 headerinfo: . H_SEPARATOR NEWLINE H_ARCH IDENTIFIER NEWLINE H_CODEVERSION CODEVERSION NEWLINE H_PRODUCER IDENTIFIER NEWLINE H_HOST IDENTIFIER NEWLINE H_COMPILESIZE IDENTIFIER NEWLINE H_IDENTIFIER FILENAME emptylines
+
+    H_SEPARATOR  shift, and go to state 12
+
+    headerinfo  go to state 13
+
+
+State 9
+
+   10 section: ELFHEADER $@3 . headerinfo elfcode $@4 sasscode
+   11 headerinfo: . H_SEPARATOR NEWLINE H_ARCH IDENTIFIER NEWLINE H_CODEVERSION CODEVERSION NEWLINE H_PRODUCER IDENTIFIER NEWLINE H_HOST IDENTIFIER NEWLINE H_COMPILESIZE IDENTIFIER NEWLINE H_IDENTIFIER FILENAME emptylines
+
+    H_SEPARATOR  shift, and go to state 12
+
+    headerinfo  go to state 14
+
+
+State 10
+
+    4 emptylines: emptylines NEWLINE .
+
+    $default  reduce using rule 4 (emptylines)
+
+
+State 11
+
+    2 program: $@1 emptylines section .
+
+    $default  reduce using rule 2 (program)
+
+
+State 12
+
+   11 headerinfo: H_SEPARATOR . NEWLINE H_ARCH IDENTIFIER NEWLINE H_CODEVERSION CODEVERSION NEWLINE H_PRODUCER IDENTIFIER NEWLINE H_HOST IDENTIFIER NEWLINE H_COMPILESIZE IDENTIFIER NEWLINE H_IDENTIFIER FILENAME emptylines
+
+    NEWLINE  shift, and go to state 15
+
+
+State 13
+
+    7 section: PTXHEADER $@2 headerinfo . ptxcode
+   12 ptxcode: . ptxcode PTXLINE
+   13        | . %empty
+
+    $default  reduce using rule 13 (ptxcode)
+
+    ptxcode  go to state 16
+
+
+State 14
+
+   10 section: ELFHEADER $@3 headerinfo . elfcode $@4 sasscode
+   14 elfcode: . elfcode ELFLINE
+   15        | . %empty
+
+    $default  reduce using rule 15 (elfcode)
+
+    elfcode  go to state 17
+
+
+State 15
+
+   11 headerinfo: H_SEPARATOR NEWLINE . H_ARCH IDENTIFIER NEWLINE H_CODEVERSION CODEVERSION NEWLINE H_PRODUCER IDENTIFIER NEWLINE H_HOST IDENTIFIER NEWLINE H_COMPILESIZE IDENTIFIER NEWLINE H_IDENTIFIER FILENAME emptylines
+
+    H_ARCH  shift, and go to state 18
+
+
+State 16
+
+    7 section: PTXHEADER $@2 headerinfo ptxcode .  [$end, PTXHEADER, ELFHEADER]
+   12 ptxcode: ptxcode . PTXLINE
+
+    PTXLINE  shift, and go to state 19
+
+    $default  reduce using rule 7 (section)
+
+
+State 17
+
+    9 $@4: . %empty  [$end, PTXHEADER, ELFHEADER, SASSLINE]
+   10 section: ELFHEADER $@3 headerinfo elfcode . $@4 sasscode
+   14 elfcode: elfcode . ELFLINE
+
+    ELFLINE  shift, and go to state 20
+
+    $default  reduce using rule 9 ($@4)
+
+    $@4  go to state 21
+
+
+State 18
+
+   11 headerinfo: H_SEPARATOR NEWLINE H_ARCH . IDENTIFIER NEWLINE H_CODEVERSION CODEVERSION NEWLINE H_PRODUCER IDENTIFIER NEWLINE H_HOST IDENTIFIER NEWLINE H_COMPILESIZE IDENTIFIER NEWLINE H_IDENTIFIER FILENAME emptylines
+
+    IDENTIFIER  shift, and go to state 22
+
+
+State 19
+
+   12 ptxcode: ptxcode PTXLINE .
+
+    $default  reduce using rule 12 (ptxcode)
+
+
+State 20
+
+   14 elfcode: elfcode ELFLINE .
+
+    $default  reduce using rule 14 (elfcode)
+
+
+State 21
+
+   10 section: ELFHEADER $@3 headerinfo elfcode $@4 . sasscode
+   16 sasscode: . sasscode SASSLINE
+   17         | . %empty
+
+    $default  reduce using rule 17 (sasscode)
+
+    sasscode  go to state 23
+
+
+State 22
+
+   11 headerinfo: H_SEPARATOR NEWLINE H_ARCH IDENTIFIER . NEWLINE H_CODEVERSION CODEVERSION NEWLINE H_PRODUCER IDENTIFIER NEWLINE H_HOST IDENTIFIER NEWLINE H_COMPILESIZE IDENTIFIER NEWLINE H_IDENTIFIER FILENAME emptylines
+
+    NEWLINE  shift, and go to state 24
+
+
+State 23
+
+   10 section: ELFHEADER $@3 headerinfo elfcode $@4 sasscode .  [$end, PTXHEADER, ELFHEADER]
+   16 sasscode: sasscode . SASSLINE
+
+    SASSLINE  shift, and go to state 25
+
+    $default  reduce using rule 10 (section)
+
+
+State 24
+
+   11 headerinfo: H_SEPARATOR NEWLINE H_ARCH IDENTIFIER NEWLINE . H_CODEVERSION CODEVERSION NEWLINE H_PRODUCER IDENTIFIER NEWLINE H_HOST IDENTIFIER NEWLINE H_COMPILESIZE IDENTIFIER NEWLINE H_IDENTIFIER FILENAME emptylines
+
+    H_CODEVERSION  shift, and go to state 26
+
+
+State 25
+
+   16 sasscode: sasscode SASSLINE .
+
+    $default  reduce using rule 16 (sasscode)
+
+
+State 26
+
+   11 headerinfo: H_SEPARATOR NEWLINE H_ARCH IDENTIFIER NEWLINE H_CODEVERSION . CODEVERSION NEWLINE H_PRODUCER IDENTIFIER NEWLINE H_HOST IDENTIFIER NEWLINE H_COMPILESIZE IDENTIFIER NEWLINE H_IDENTIFIER FILENAME emptylines
+
+    CODEVERSION  shift, and go to state 27
+
+
+State 27
+
+   11 headerinfo: H_SEPARATOR NEWLINE H_ARCH IDENTIFIER NEWLINE H_CODEVERSION CODEVERSION . NEWLINE H_PRODUCER IDENTIFIER NEWLINE H_HOST IDENTIFIER NEWLINE H_COMPILESIZE IDENTIFIER NEWLINE H_IDENTIFIER FILENAME emptylines
+
+    NEWLINE  shift, and go to state 28
+
+
+State 28
+
+   11 headerinfo: H_SEPARATOR NEWLINE H_ARCH IDENTIFIER NEWLINE H_CODEVERSION CODEVERSION NEWLINE . H_PRODUCER IDENTIFIER NEWLINE H_HOST IDENTIFIER NEWLINE H_COMPILESIZE IDENTIFIER NEWLINE H_IDENTIFIER FILENAME emptylines
+
+    H_PRODUCER  shift, and go to state 29
+
+
+State 29
+
+   11 headerinfo: H_SEPARATOR NEWLINE H_ARCH IDENTIFIER NEWLINE H_CODEVERSION CODEVERSION NEWLINE H_PRODUCER . IDENTIFIER NEWLINE H_HOST IDENTIFIER NEWLINE H_COMPILESIZE IDENTIFIER NEWLINE H_IDENTIFIER FILENAME emptylines
+
+    IDENTIFIER  shift, and go to state 30
+
+
+State 30
+
+   11 headerinfo: H_SEPARATOR NEWLINE H_ARCH IDENTIFIER NEWLINE H_CODEVERSION CODEVERSION NEWLINE H_PRODUCER IDENTIFIER . NEWLINE H_HOST IDENTIFIER NEWLINE H_COMPILESIZE IDENTIFIER NEWLINE H_IDENTIFIER FILENAME emptylines
+
+    NEWLINE  shift, and go to state 31
+
+
+State 31
+
+   11 headerinfo: H_SEPARATOR NEWLINE H_ARCH IDENTIFIER NEWLINE H_CODEVERSION CODEVERSION NEWLINE H_PRODUCER IDENTIFIER NEWLINE . H_HOST IDENTIFIER NEWLINE H_COMPILESIZE IDENTIFIER NEWLINE H_IDENTIFIER FILENAME emptylines
+
+    H_HOST  shift, and go to state 32
+
+
+State 32
+
+   11 headerinfo: H_SEPARATOR NEWLINE H_ARCH IDENTIFIER NEWLINE H_CODEVERSION CODEVERSION NEWLINE H_PRODUCER IDENTIFIER NEWLINE H_HOST . IDENTIFIER NEWLINE H_COMPILESIZE IDENTIFIER NEWLINE H_IDENTIFIER FILENAME emptylines
+
+    IDENTIFIER  shift, and go to state 33
+
+
+State 33
+
+   11 headerinfo: H_SEPARATOR NEWLINE H_ARCH IDENTIFIER NEWLINE H_CODEVERSION CODEVERSION NEWLINE H_PRODUCER IDENTIFIER NEWLINE H_HOST IDENTIFIER . NEWLINE H_COMPILESIZE IDENTIFIER NEWLINE H_IDENTIFIER FILENAME emptylines
+
+    NEWLINE  shift, and go to state 34
+
+
+State 34
+
+   11 headerinfo: H_SEPARATOR NEWLINE H_ARCH IDENTIFIER NEWLINE H_CODEVERSION CODEVERSION NEWLINE H_PRODUCER IDENTIFIER NEWLINE H_HOST IDENTIFIER NEWLINE . H_COMPILESIZE IDENTIFIER NEWLINE H_IDENTIFIER FILENAME emptylines
+
+    H_COMPILESIZE  shift, and go to state 35
+
+
+State 35
+
+   11 headerinfo: H_SEPARATOR NEWLINE H_ARCH IDENTIFIER NEWLINE H_CODEVERSION CODEVERSION NEWLINE H_PRODUCER IDENTIFIER NEWLINE H_HOST IDENTIFIER NEWLINE H_COMPILESIZE . IDENTIFIER NEWLINE H_IDENTIFIER FILENAME emptylines
+
+    IDENTIFIER  shift, and go to state 36
+
+
+State 36
+
+   11 headerinfo: H_SEPARATOR NEWLINE H_ARCH IDENTIFIER NEWLINE H_CODEVERSION CODEVERSION NEWLINE H_PRODUCER IDENTIFIER NEWLINE H_HOST IDENTIFIER NEWLINE H_COMPILESIZE IDENTIFIER . NEWLINE H_IDENTIFIER FILENAME emptylines
+
+    NEWLINE  shift, and go to state 37
+
+
+State 37
+
+   11 headerinfo: H_SEPARATOR NEWLINE H_ARCH IDENTIFIER NEWLINE H_CODEVERSION CODEVERSION NEWLINE H_PRODUCER IDENTIFIER NEWLINE H_HOST IDENTIFIER NEWLINE H_COMPILESIZE IDENTIFIER NEWLINE . H_IDENTIFIER FILENAME emptylines
+
+    H_IDENTIFIER  shift, and go to state 38
+
+
+State 38
+
+   11 headerinfo: H_SEPARATOR NEWLINE H_ARCH IDENTIFIER NEWLINE H_CODEVERSION CODEVERSION NEWLINE H_PRODUCER IDENTIFIER NEWLINE H_HOST IDENTIFIER NEWLINE H_COMPILESIZE IDENTIFIER NEWLINE H_IDENTIFIER . FILENAME emptylines
+
+    FILENAME  shift, and go to state 39
+
+
+State 39
+
+    4 emptylines: . emptylines NEWLINE
+    5           | . %empty
+   11 headerinfo: H_SEPARATOR NEWLINE H_ARCH IDENTIFIER NEWLINE H_CODEVERSION CODEVERSION NEWLINE H_PRODUCER IDENTIFIER NEWLINE H_HOST IDENTIFIER NEWLINE H_COMPILESIZE IDENTIFIER NEWLINE H_IDENTIFIER FILENAME . emptylines
+
+    $default  reduce using rule 5 (emptylines)
+
+    emptylines  go to state 40
+
+
+State 40
+
+    4 emptylines: emptylines . NEWLINE
+   11 headerinfo: H_SEPARATOR NEWLINE H_ARCH IDENTIFIER NEWLINE H_CODEVERSION CODEVERSION NEWLINE H_PRODUCER IDENTIFIER NEWLINE H_HOST IDENTIFIER NEWLINE H_COMPILESIZE IDENTIFIER NEWLINE H_IDENTIFIER FILENAME emptylines .  [$end, PTXHEADER, ELFHEADER, PTXLINE, ELFLINE, SASSLINE]
+
+    NEWLINE  shift, and go to state 10
+
+    $default  reduce using rule 11 (headerinfo)
