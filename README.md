@@ -1,6 +1,6 @@
 GPGPUSim+Ramulator
 
-This is the source code for GPGPUSim+Ramulator simulator which is the GPGPUSim integrated with the Ramulator DRAM simaltor. In this version, GPGPUSim uses Ramulator to silmulate the DRAM. This Simulator supports these DRAM standards:
+This is the source code for GPGPUSim+Ramulator simulator which is the GPGPUSim integrated with the Ramulator DRAM simultor. In this version, GPGPUSim uses Ramulator to silmulate the DRAM. This Simulator supports these DRAM standards:
 
 - DDR3 (2007), DDR4 (2012)
 - LPDDR3 (2012), LPDDR4 (2014)
