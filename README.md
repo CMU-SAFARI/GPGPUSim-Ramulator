@@ -12,7 +12,7 @@ This is the source code for GPGPUSim+Ramulator simulator which is the GPGPUSim i
 BUILDING
 
 - This version requires a C++11 compiler (e.g., clang++, g++-5)
-- The process for compiling this version is identical to the process of compiling regular GPGPU-Sim.
+- The process for compiling this version is identical to the process of compiling regular GPGPU-Sim, so first read the GPGPUSim's README file.
 
 -----------------------------------------------------
 -----------------------------------------------------
