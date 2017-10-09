@@ -1,6 +1,7 @@
-GPGPUSim+Ramulator
+## GPGPUSim+Ramulator
 
-This is the source code for GPGPUSim+Ramulator simulator which is the GPGPUSim integrated with Ramulator, which can simulate various types of DRAM.
+This reposity contains the source code of GPGPUSim integrated with
+Ramulator as a DRAM model.
 
 GPGPU-Sim is a cycle-level simulator modeling contemporary graphics processing units (GPUs) running GPU computing workloads written in CUDA or OpenCL. The GPGPUSim+Ramulator simualtor is using GPGPU-Sim Simulator Version 3.2.2
 http://www.ece.ubc.ca/~aamodt/papers/gpgpusim.ispass09.pdf
