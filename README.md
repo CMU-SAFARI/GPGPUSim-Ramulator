@@ -28,13 +28,14 @@ BUILDING
 RUNING
 
 - In the gpgpusim.config file:
-      * Set the gpgpu_ramulator_config to point to the address of the desired DRAM standard. (Supported DRAM standards are provided in Ramulator_configs directory).
+
+     Set the gpgpu_ramulator_config to point to the address of the desired DRAM standard. (Supported DRAM standards are provided in Ramulator_configs directory).
       
-      * Set the gpgpu_ramulator_cache_line_size to the desired L2 cache line size.
+     Set the gpgpu_ramulator_cache_line_size to the desired L2 cache line size.
       
-      * Adjust the gpgpu_dram_timing_opt acording to the desired DRAM standard.
+     Adjust the gpgpu_dram_timing_opt acording to the desired DRAM standard.
       
-      * In gpgpu_clock_domains, set the <DRAM Clock> acording to the desired DRAM standard.
+     In gpgpu_clock_domains, set the <DRAM Clock> acording to the desired DRAM standard.
 
 - The rest of the process for running this version is identical to the process for running regular GPGPU-Sim, so first read the GPGPUSim's README file.
 
