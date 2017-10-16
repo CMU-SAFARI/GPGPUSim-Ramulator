@@ -33,7 +33,7 @@
 #include "../trace.h"
 #include "addrdec.h"
 #include "shader.h"
-#include "Ramulator.h"
+#include "../ramulator/Ramulator.h"
 #include <iostream>
 #include <fstream>
 #include <list>

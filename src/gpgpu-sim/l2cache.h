@@ -33,7 +33,7 @@
 
 #include <list>
 #include <queue>
-#include "Ramulator.h"
+#include "../ramulator/Ramulator.h"
 
 class mem_fetch;
 
