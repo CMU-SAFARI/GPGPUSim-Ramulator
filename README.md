@@ -35,7 +35,7 @@ RUNING
       
      - Adjust the gpgpu_dram_timing_opt acording to the desired DRAM standard.
       
-     - In gpgpu_clock_domains, set the <DRAM Clock> acording to the desired DRAM standard.
+     - In gpgpu_clock_domains, set the "DRAM Clock" acording to the desired DRAM standard.
 
 - The rest of the process for running this version is identical to the process for running regular GPGPU-Sim, so first read the GPGPUSim's README file.
 
