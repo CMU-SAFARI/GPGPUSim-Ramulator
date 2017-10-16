@@ -1,6 +1,15 @@
-GPGPUSim+Ramulator
+## GPGPUSim+Ramulator
 
-This is the source code for GPGPUSim+Ramulator simulator which is the GPGPUSim integrated with the Ramulator DRAM simulator. In this version, GPGPUSim uses Ramulator to silmulate the DRAM. This Simulator supports these DRAM standards:
+This reposity contains the source code of GPGPUSim integrated with
+Ramulator as a DRAM model.
+
+GPGPU-Sim is a cycle-level simulator modeling contemporary graphics processing units (GPUs) running GPU computing workloads written in CUDA or OpenCL. The GPGPUSim+Ramulator simualtor is using GPGPU-Sim Simulator Version 3.2.2
+http://www.ece.ubc.ca/~aamodt/papers/gpgpusim.ispass09.pdf
+
+Ramulator is a fast and extensible DRAM simulator, with built-in support for modeling many different DRAM technologies, described in the IEEE CAL 2015 paper by Kim et al. at http://users.ece.cmu.edu/~omutlu/pub/ramulator_dram_simulator-ieee-cal15.pdf
+
+
+This Simulator supports these DRAM standards:
 
 - DDR3 (2007), DDR4 (2012)
 - LPDDR3 (2012), LPDDR4 (2014)
