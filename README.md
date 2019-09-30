@@ -15,6 +15,14 @@ This Simulator supports these DRAM standards:
 - GDDR5 (2009)
 - WIO (2011), WIO2 (2014)
 - HBM (2013)
+
+
+## Citation
+
+Please cite the following papers if you find this simulation infrastructure useful:
+
+S. Ghose, T. Li, N. Hajinazar, D. Senol Cali, and O. Mutlu, "Demystifying Complex Workload–DRAM Interactions: An Experimental Study", SIGMETRICS 2019.
+
 -----------------------------------------------------
 -----------------------------------------------------
 BUILDING
