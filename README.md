@@ -21,7 +21,7 @@ This Simulator supports these DRAM standards:
 
 Please cite the following paper if you find this simulation infrastructure useful:
 
-S. Ghose, T. Li, N. Hajinazar, D. Senol Cali, and O. Mutlu, "Demystifying Complex Workload–DRAM Interactions: An Experimental Study", SIGMETRICS 2019.
+S. Ghose, T. Li, N. Hajinazar, D. Senol Cali, and O. Mutlu, "[Demystifying Complex Workload–DRAM Interactions: An Experimental Study](https://arxiv.org/pdf/1902.07609)", SIGMETRICS 2019.
 
 -----------------------------------------------------
 -----------------------------------------------------
